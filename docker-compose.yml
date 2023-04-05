@@ -1,0 +1,39 @@
+services:
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      frontend-net:
+        ipv4_address: 172.51.0.101
+    depends_on:
+      - backend
+  
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - '5000:5000'
+    networks:
+      backend-net:
+        ipv4_address: 172.100.0.100
+      frontend-net:
+        ipv4_address: 172.51.0.100
+
+networks:
+  backend-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.100.0.0/16
+  frontend-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.51.0.0/16
+  
