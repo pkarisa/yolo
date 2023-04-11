@@ -4,7 +4,7 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-    image: pkarisa/client:v3
+    image: pkarisa/client:v4
     ports:
       - '3000:3000'
     networks:
@@ -18,7 +18,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: pkarisa/backend:v3
+    image: pkarisa/backend:v4
     ports:
       - '5000:5000'
     environment:
